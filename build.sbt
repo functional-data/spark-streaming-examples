@@ -33,9 +33,10 @@ val avro = Seq(
   "org.apache.avro" % "avro-tools" % "1.8.1"
 )
 
-val kafkaClient = Seq("org.apache.kafka" % "kafka-clients" % kafkaVersion,
-  "io.confluent" % "kafka-avro-serializer" % confluentVersion
-)
+val kafkaAvroSerde = Seq("io.confluent" % "kafka-avro-serializer" % confluentVersion)
+
+val kafkaClient = Seq("org.apache.kafka" % "kafka-clients" % kafkaVersion) ++ kafkaAvroSerde
+
 
 val akka = Seq("com.typesafe.akka" %% "akka-actor" % "2.3.11")
 
@@ -61,6 +62,6 @@ lazy val ingestion = (
 lazy val streaming = (
     Project("streaming", file("streaming"))
       settings(
-        libraryDependencies ++= testDependencies ++ sparkDeps
+        libraryDependencies ++= testDependencies ++ sparkDeps ++ kafkaAvroSerde
       )
   ) dependsOn(domain)
