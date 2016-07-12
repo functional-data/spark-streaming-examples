@@ -1,0 +1,11 @@
+{
+    "type": "record",
+    "name": "BankTransaction",
+    "namespace": "io.functionaldata.domain",
+    "fields": [
+        { "name" : "date", "type" : "string" },
+        { "name" : "beneficiary", "type": "string" },
+        { "name" : "amount", "type": "int" },
+        { "name" : "payer", "type": "string" }
+    ]
+}
