@@ -1,16 +1,41 @@
 package io.functionaldata.streaming
 
+import io.confluent.kafka.serializers.{KafkaAvroDecoder, KafkaAvroSerializer}
 import org.apache.spark.streaming.kafka.KafkaUtils
 import io.functionaldata.domain.BankTransaction
+import org.apache.spark.SparkConf
+import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
   * Created by mbarak on 12/07/16.
   */
 class TransactionsStreaming {
 
-  def run(configs: Map[String,String]) = {
+  def run() = {
 
-    val bankTransactionStream = KafkaUtils.createDirectStream[String, BankTransaction, io.confluent.kafka.serializers.KafkaAvroSerializer, io.confluent.kafka.serializers.KafkaAvroSerializer]
+    val kafkaParams = Map("metadata.broker.list" -> "localhost:9092",
+      "schema.registry.url" -> "http://localhost:8081",
+      "zookeeper.connect" -> "localhost:2181",
+      "group.id" -> "kafka-spark-transactions-streaming"
+    )
+    val topic = Set("transaction")
+
+    val conf = new SparkConf().setAppName("kafka-streaming-test").setMaster("local[*]")
+
+    val ssc = new StreamingContext(conf, Seconds(10))
+
+    val bankTransactionStream = KafkaUtils.createDirectStream[Object, Object, KafkaAvroDecoder, KafkaAvroDecoder](ssc, kafkaParams, topic)
+
+    bankTransactionStream.map(_._2.asInstanceOf[BankTransaction]).print()
+
+    ssc.start()
+    ssc.awaitTermination()
   }
+}
 
+object TransactionsStreaming {
+  def main(args: Array[String]) {
+    val t = new TransactionsStreaming()
+    t.run()
+  }
 }

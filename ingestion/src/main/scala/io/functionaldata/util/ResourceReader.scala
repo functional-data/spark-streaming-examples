@@ -1,4 +1,4 @@
-package com.io.functionaldata.util
+package io.functionaldata.util
 
 import scala.io.Source
 

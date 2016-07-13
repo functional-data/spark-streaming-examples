@@ -1,10 +1,10 @@
-package com.io.functionaldata.ingestion
+package io.functionaldata.ingestion
 
 import java.util.Properties
 import java.util.logging.LogManager
 
 import akka.actor.Actor
-import com.io.functionaldata.util.ResourceReader
+import io.functionaldata.util.ResourceReader
 import io.functionaldata.domain.BankTransaction
 import org.apache.kafka.clients.producer.{Callback, KafkaProducer, ProducerRecord, RecordMetadata}
 

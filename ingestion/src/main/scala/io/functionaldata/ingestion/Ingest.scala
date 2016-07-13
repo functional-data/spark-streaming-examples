@@ -1,9 +1,9 @@
-package com.io.functionaldata.ingestion
+package io.functionaldata.ingestion
 
 import java.util.Properties
 
 import akka.actor.{ActorSystem, Props}
-import com.io.functionaldata.util.ClassPathResourceReader
+import io.functionaldata.util.ClassPathResourceReader
 import org.apache.kafka.clients.producer.ProducerConfig
 
 import scala.concurrent.duration._

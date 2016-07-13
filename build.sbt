@@ -22,18 +22,20 @@ resolvers ++= Seq(
 
 
 val sparkDeps = Seq(
-  "org.apache.spark" %% "spark-core" % sparkVersion,
+  "org.apache.spark" %% "spark-core" % sparkVersion excludeAll ExclusionRule(name = "jackson-databind"),
   "org.apache.spark" %% "spark-streaming" % sparkVersion,
-  "org.apache.spark" %% "spark-streaming-kafka" % sparkVersion
-)
+  "org.apache.spark" %% "spark-streaming-kafka" % sparkVersion,
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.4.4"
+  )
 
 
 val avro = Seq(
-  "org.apache.avro" % "avro" % "1.8.1",
-  "org.apache.avro" % "avro-tools" % "1.8.1"
+  "org.apache.avro" % "avro" % "1.8.1"
 )
 
-val kafkaAvroSerde = Seq("io.confluent" % "kafka-avro-serializer" % confluentVersion)
+val kafkaAvroSerde = Seq("io.confluent" % "kafka-avro-serializer" % confluentVersion excludeAll ExclusionRule(name = "jackson-databind"),
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.4.4"
+)
 
 val kafkaClient = Seq("org.apache.kafka" % "kafka-clients" % kafkaVersion) ++ kafkaAvroSerde
 
@@ -65,3 +67,9 @@ lazy val streaming = (
         libraryDependencies ++= testDependencies ++ sparkDeps ++ kafkaAvroSerde
       )
   ) dependsOn(domain)
+
+dependencyOverrides ++= Set(
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.4.4"
+)
+
+lazy val root = (project in file(".")).aggregate(streaming, ingestion, domain)
