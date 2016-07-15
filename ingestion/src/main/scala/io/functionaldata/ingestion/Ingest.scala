@@ -25,7 +25,7 @@ object Ingest {
     val actor = system.actorOf(actorProps)
 
 
-    system.scheduler.schedule(0 seconds, 30 seconds, actor, TransactionsIngestionActor.Ping)
+    system.scheduler.schedule(0 seconds, 5 seconds, actor, TransactionsIngestionActor.Ping)
 
     system.awaitTermination()
   }

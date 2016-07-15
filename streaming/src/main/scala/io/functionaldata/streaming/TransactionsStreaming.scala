@@ -3,6 +3,8 @@ package io.functionaldata.streaming
 import io.confluent.kafka.serializers.{KafkaAvroDecoder, KafkaAvroSerializer}
 import org.apache.spark.streaming.kafka.KafkaUtils
 import io.functionaldata.domain.BankTransaction
+import org.apache.avro.generic.GenericRecord
+import org.apache.avro.specific.SpecificData
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
@@ -26,7 +28,7 @@ class TransactionsStreaming {
 
     val bankTransactionStream = KafkaUtils.createDirectStream[Object, Object, KafkaAvroDecoder, KafkaAvroDecoder](ssc, kafkaParams, topic)
 
-    bankTransactionStream.map(_._2.asInstanceOf[BankTransaction]).print()
+    bankTransactionStream.map{ case (k,v) => SpecificData.get().deepCopy(BankTransaction.SCHEMA$, v)}.print()
 
     ssc.start()
     ssc.awaitTermination()

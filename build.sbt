@@ -57,14 +57,16 @@ lazy val domain = (
 lazy val ingestion = (
   Project("ingestion", file("ingestion"))
     settings(
-      libraryDependencies ++= testDependencies ++ kafkaClient ++ akka
+      libraryDependencies ++= testDependencies ++ kafkaClient ++ akka,
+      mainClass in (Compile, run) := Some("io.functionaldata.ingestion.Ingest")
     )
   ) dependsOn(domain)
 
 lazy val streaming = (
     Project("streaming", file("streaming"))
       settings(
-        libraryDependencies ++= testDependencies ++ sparkDeps ++ kafkaAvroSerde
+        libraryDependencies ++= testDependencies ++ sparkDeps ++ kafkaAvroSerde,
+        mainClass in (Compile, run) := Some("io.functionaldata.streaming.TransactionsStreaming")
       )
   ) dependsOn(domain)
 
@@ -73,3 +75,5 @@ dependencyOverrides ++= Set(
 )
 
 lazy val root = (project in file(".")).aggregate(streaming, ingestion, domain)
+
+
