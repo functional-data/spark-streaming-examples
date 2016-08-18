@@ -10,7 +10,7 @@ scalaVersion := "2.11.7"
 
 val sparkVersion =  "1.6.2"
 
-// we could use also 0.9.0.0 since it is compatible
+// at the time of writing spark 1.6.2 supports up to 0.8.2.1 since it is compatible
 val kafkaVersion = "0.8.2.1"
 
 val confluentVersion = "2.0.0"
@@ -39,13 +39,11 @@ val kafkaAvroSerde = Seq("io.confluent" % "kafka-avro-serializer" % confluentVer
 
 val kafkaClient = Seq("org.apache.kafka" % "kafka-clients" % kafkaVersion) ++ kafkaAvroSerde
 
-
 val akka = Seq("com.typesafe.akka" %% "akka-actor" % "2.3.11")
 
-val testDependencies =  Seq(
-  "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+val testDependencies =  Seq("org.scalatest" %% "scalatest" % "2.2.4" % "test")
 
-)
+val configParsing = Seq("com.github.scopt" %% "scopt" % "3.5.0")
 
 lazy val domain = (
   Project("domain", file("domain"))
@@ -65,7 +63,7 @@ lazy val ingestion = (
 lazy val streaming = (
     Project("streaming", file("streaming"))
       settings(
-        libraryDependencies ++= testDependencies ++ sparkDeps ++ kafkaAvroSerde,
+        libraryDependencies ++= testDependencies ++ sparkDeps ++ kafkaAvroSerde ++ configParsing,
         mainClass in (Compile, run) := Some("io.functionaldata.streaming.TransactionsStreaming")
       )
   ) dependsOn(domain)

@@ -1,0 +1,26 @@
+2016-07-25 14:32:40,327  INFO [main] (notebook.kernel.pfork.BetterFork$) - Remote process starting
+2016-07-25 14:32:40,877  INFO [Remote-akka.actor.default-dispatcher-2] (akka.event.slf4j.Slf4jLogger) - Slf4jLogger started
+2016-07-25 14:32:40,941  INFO [Remote-akka.actor.default-dispatcher-2] (Remoting) - Starting remoting
+2016-07-25 14:32:41,104  INFO [Remote-akka.actor.default-dispatcher-3] (Remoting) - Remoting started; listening on addresses :[akka.tcp://Remote@127.0.0.1:63157]
+2016-07-25 14:32:41,110  INFO [Remote-akka.actor.default-dispatcher-3] (Remoting) - Remoting now listens on addresses: [akka.tcp://Remote@127.0.0.1:63157]
+2016-07-25 14:32:41,594  INFO [Remote-akka.actor.default-dispatcher-4] (notebook.client.ReplCalculator) - ReplCalculator preStart
+2016-07-25 14:32:41,600  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) -  INIT SCRIPT: dummy
+2016-07-25 14:32:42,432  WARN [Remote-akka.actor.default-dispatcher-3] (org.apache.hadoop.util.NativeCodeLoader) - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-07-25 14:32:42,620  INFO [Remote-akka.actor.default-dispatcher-3] (org.apache.spark.SecurityManager) - Changing view acls to: mbarak
+2016-07-25 14:32:42,623  INFO [Remote-akka.actor.default-dispatcher-3] (org.apache.spark.SecurityManager) - Changing modify acls to: mbarak
+2016-07-25 14:32:42,626  INFO [Remote-akka.actor.default-dispatcher-3] (org.apache.spark.SecurityManager) - SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(mbarak); users with modify permissions: Set(mbarak)
+2016-07-25 14:32:42,992  INFO [Remote-akka.actor.default-dispatcher-3] (org.apache.spark.HttpServer) - Starting HTTP Server
+2016-07-25 14:32:43,154  INFO [Remote-akka.actor.default-dispatcher-3] (org.spark-project.jetty.server.Server) - jetty-8.y.z-SNAPSHOT
+2016-07-25 14:32:43,177  INFO [Remote-akka.actor.default-dispatcher-3] (org.spark-project.jetty.server.AbstractConnector) - Started SocketConnector@0.0.0.0:63181
+2016-07-25 14:32:43,179  INFO [Remote-akka.actor.default-dispatcher-3] (org.apache.spark.util.Utils) - Successfully started service 'HTTP server' on port 63181.
+2016-07-25 14:32:49,086  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) - Init script processed successfully
+2016-07-25 14:32:49,087  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) -  INIT SCRIPT: class server
+2016-07-25 14:32:49,358  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) - Init script processed successfully
+2016-07-25 14:32:49,359  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) -  INIT SCRIPT: deps
+2016-07-25 14:32:49,736  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) - Init script processed successfully
+2016-07-25 14:32:49,736  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) -  INIT SCRIPT: imports
+2016-07-25 14:32:49,738  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) -  INIT SCRIPT: custom conf
+2016-07-25 14:32:50,570  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) - Init script processed successfully
+2016-07-25 14:32:50,570  INFO [Remote-akka.actor.default-dispatcher-2] (notebook.client.ReplCalculator) -  INIT SCRIPT: jar:file:/Users/mbarak/apps/spark-notebook-0.6.3-scala-2.11.7-spark-1.6.2-hadoop-2.6.0-with-hive-with-parquet/lib/nooostab.spark-notebook-0.6.3-scala-2.11.7-spark-1.6.2-hadoop-2.6.0-with-hive-with-parquet.jar!/scripts/init.sc
+2016-07-25 14:32:52,293  INFO [Thread-1] (org.apache.spark.util.ShutdownHookManager) - Shutdown hook called
+2016-07-25 14:32:52,295  INFO [Thread-1] (org.apache.spark.util.ShutdownHookManager) - Deleting directory /private/var/folders/q9/znn2h6ns21jbfhc2t_t57_300000gn/T/spark-notebook-repl-27c24963-b750-4945-946b-e596bec4bec4
